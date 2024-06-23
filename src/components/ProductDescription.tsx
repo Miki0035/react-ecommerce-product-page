@@ -6,14 +6,8 @@ import iconMinus from "../assets/images/icon-minus.svg";
 import cartIcon from "../assets/images/icon-cart.svg";
 import { ProductContext } from "../context/StateContext";
 
-const ProductDescription: React.FC<ProductDescriptionProps> = ({
-  productDesc,
-  productName,
-  price,
-  discount,
-  companyName,
-}) => {
-  const { amount, setAmount } = useContext(ProductContext);
+const ProductDescription: React.FC<ProductDescriptionProps> = ({ product }) => {
+  const { amount, setAmount, setCartItems } = useContext(ProductContext);
 
   const increaseAmount = () => {
     setAmount((prevAmount) => prevAmount + 1);
@@ -26,29 +20,40 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
       setAmount((prevAmount) => prevAmount - 1);
     }
   };
+
+  const addToCart = () => {
+    if (amount === 0) {
+      return;
+    } else {
+      setCartItems((prevCartItems) => [...prevCartItems, product]);
+    }
+  };
+
   return (
     <div className="flex flex-col items-start my-5 mx-2">
       <h5 className="uppercase text-darkGrayishBlue text-xs mb-2">
-        {companyName}
+        {product.companyName}
       </h5>
       <h1 className="capitalize text-veryDarkBlue text-2xl font-kumbhBold mb-2">
-        {productName}
+        {product.productName}
       </h1>
-      <p className="text-darkGrayishBlue text-sm">{productDesc}</p>
+      <p className="text-darkGrayishBlue text-sm">{product.productDesc}</p>
       <div className="flex w-full justify-between my-3 items-center">
         <div>
           <span className="text-veryDarkBlue font-kumbhBold text-2xl">
-            ${(price * discount) / 100}.00
+            ${(product.price * product.discount) / 100}.00
           </span>{" "}
           <span className="bg-black text-white rounded-md px-2 py-1 ml-2 text-sm font-kumbhBold">
-            {discount}%
+            {product.discount}%
           </span>
         </div>
         <div>
-          {discount ? (
-            <s className="text-darkGrayishBlue font-kumbhBold">${price}.00</s>
+          {product.discount ? (
+            <s className="text-darkGrayishBlue font-kumbhBold">
+              ${product.price}.00
+            </s>
           ) : (
-            <span>${price}.00</span>
+            <span>${product.price}.00</span>
           )}
         </div>
       </div>
@@ -63,7 +68,10 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
           </button>
         </div>
         <div className="w-full mt-3 flex justify-center">
-          <button className="text-black font-kumbhBold flex bg-orange w-3/4 py-2 rounded-md text-md flex items-center justify-center">
+          <button
+            onClick={() => addToCart()}
+            className="text-black font-kumbhBold flex bg-orange w-3/4 py-2 rounded-md text-md flex items-center justify-center"
+          >
             <img src={cartIcon} alt="cart icon" className="w-4 h-4 mr-3" />
             Add to cart
           </button>

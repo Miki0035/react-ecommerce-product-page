@@ -6,15 +6,18 @@ import avatarIcon from "../assets/images/image-avatar.png";
 
 import { useState, useContext } from "react";
 import { ProductContext } from "../context/StateContext";
+import CartCard from "./CartCard";
 
 const Navbar = () => {
   const { cartItems } = useContext(ProductContext);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartShow, setIsCartShow] = useState(false);
+
   return (
-    <nav className="relative bg-white flex justify-between w-full items-center justify-center px-4 py-2">
+    <nav className="relative bg-white flex justify-between w-full items-center justify-center px-3 py-2">
       <div className="flex flex-row justify-center items-center w-2/3">
-        <div className="flex w-46 items-center">
+        <div className="flex w-72 items-center">
           <a
             className="mx-2 hover:cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
@@ -76,10 +79,13 @@ const Navbar = () => {
       )}
       <div className="flex items-center justify-end w-1/2">
         <div className="relative w-6 mx-6">
-          <img src={cartIcon} alt="cart icon" />
-          <span className="absolute text-white text-sm flex justify-center w-5 h-3 rounded-md pb-4  bottom-3 rounded-full bg-orange left-2">
-            {cartItems.length}
-          </span>
+          <button onClick={() => setIsCartShow(!isCartShow)}>
+            <img src={cartIcon} alt="cart icon" />
+            <span className="absolute text-white text-sm flex justify-center w-5 h-3 rounded-md pb-4  bottom-4 rounded-full bg-orange left-2">
+              {cartItems.length}
+            </span>
+          </button>
+          {isCartShow && <CartCard />}
         </div>
         <div className="rounded-full w-8">
           <img src={avatarIcon} alt="avatar icon" />

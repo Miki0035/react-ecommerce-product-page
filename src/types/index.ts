@@ -32,9 +32,6 @@ export type ProductImagesContainerProps = {
 
 
 export type ProductDescriptionProps = {
-    companyName: string;
-    productName: string;
-    productDesc: string;
-    price: number;
-    discount: number;
+  product : ProductInfo;
 }
+

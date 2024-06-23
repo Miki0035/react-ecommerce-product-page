@@ -9,7 +9,7 @@ const ProductSection = () => {
         <ProductImageContainer {...product} />
       </div>
       <div className="flex flex-col">
-        <ProductDescription {...product} />
+        <ProductDescription product={product} />
       </div>
     </div>
   );
