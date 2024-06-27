@@ -4,7 +4,9 @@ const App = () => {
   return (
     <StateContext>
       <Navbar />
-      <ProductSection />
+      <main>
+        <ProductSection />
+      </main>
       <div>
         <div className="attribution">
           Challenge by{" "}
