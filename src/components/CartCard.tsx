@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ProductContext } from "../context/StateContext";
 import iconDelete from "../assets/images/icon-delete.svg";
 
@@ -7,10 +7,14 @@ const CartCard = () => {
   let totalAmount = 0;
   let totalCost = 0;
 
-  const removeFromCart = () => {};
+  const removeFromCart = (index: number) => {
+    if (cartItems) {
+      setCartItems((prevCart) => prevCart.filter((_item, i) => i !== index));
+    }
+  };
 
   return (
-    <div className="absolute z-40 h-screen w-[305px] top-11 -right-16">
+    <div className="absolute z-40 h-screen w-[310px] top-11 -right-14 min-[375px]:w-[355px] ">
       {cartItems.length > 0 ? (
         cartItems.map((cart, index) => {
           totalAmount = (cart.price * cart.discount) / 100;
@@ -45,7 +49,7 @@ const CartCard = () => {
                     </div>
                   </div>
                   <div className="flex">
-                    <button onClick={() => removeFromCart()}>
+                    <button onClick={() => removeFromCart(index)}>
                       <img
                         src={iconDelete}
                         alt="delete icon"

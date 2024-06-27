@@ -1,8 +1,5 @@
 import Navbar from "./Navbar";
 import ProductSection from "./ProductSection";
 import CartCard from "./CartCard";
-export {
-    Navbar,
-    ProductSection,
-    CartCard
-}
+import LightBox from "./LightBox";
+export { Navbar, ProductSection, CartCard, LightBox };

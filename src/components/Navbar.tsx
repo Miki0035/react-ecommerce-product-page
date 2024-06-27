@@ -16,18 +16,18 @@ const Navbar = () => {
 
   return (
     <nav className="relative bg-white flex justify-between w-full items-center justify-center px-3 py-2">
-      <div className="flex flex-row justify-center items-center w-2/3">
-        <div className="flex w-72 items-center">
+      <div className="flex flex-row justify-center items-center w-2/3 min-[1024px]:w-3/4">
+        <div className="flex w-72 items-center min-[1024px]:w-32 min-[1024px]:mr-10">
           <a
-            className="mx-2 hover:cursor-pointer"
+            className="mx-2 hover:cursor-pointer min-[1024px]:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
             <img src={menu} alt="menu icon" />
           </a>
           <img src={logo} alt="logo" className="w-32" />
         </div>
-        <div className="hidden md:flex flex-row">
-          <ul>
+        <div className="hidden min-[1024px]:flex">
+          <ul className="flex w-96 justify-between capitalize  text-darkgrayishblue">
             <li>
               <a href="#">Collections</a>
             </li>
