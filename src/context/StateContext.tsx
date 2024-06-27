@@ -26,4 +26,4 @@ const StateContext = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export { StateContext , ProductContext };
+export { StateContext, ProductContext };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ProductImagesContainerProps } from "../types";
 import iconNext from "../assets/images/icon-next.svg";
 import iconPrevious from "../assets/images/icon-previous.svg";
@@ -10,37 +10,42 @@ const ProductImagesContainer: React.FC<ProductImagesContainerProps> = ({
   const [imageIndex, setImageIndex] = useState(0);
   const [isLightBoxShow, setIsLightBoxShow] = useState(false);
 
-  useEffect(() => {}, [imageIndex]);
-
   //change to next image
   const onClickForward = () => {
-    if (imageIndex + 1 > productImage.length - 1) {
+    if (imageIndex + 1 > productImage[0].img.length - 1) {
       setImageIndex(0);
     } else {
       setImageIndex((prevState) => prevState + 1);
     }
   };
-  console.log(imageIndex);
   //change to previous image
   const onClickBackward = () => {
     if (imageIndex - 1 < 0) {
-      setImageIndex(productImage.length - 1);
+      setImageIndex(productImage[0].img.length - 1);
     } else {
       setImageIndex((prevState) => prevState - 1);
     }
   };
 
   return (
-    <div className="flex justify-center items-center relative w-full h-full">
-      <div className="flex flex-col">
+    <div className="flex justify-center items-center w-full h-full">
+      <div className="flex flex-col ">
         <div className="mb-4">
-          <button onClick={() => setIsLightBoxShow(!isLightBoxShow)}>
+          <button
+            className="hidden min-[1024px]:flex"
+            onClick={() => setIsLightBoxShow(!isLightBoxShow)}
+          >
             <img
               src={productImage[0].img[imageIndex]}
               alt="shoe image"
               className="min-[1024px]:rounded-lg"
             />
           </button>
+          <img
+            src={productImage[0].img[imageIndex]}
+            alt="shoe image"
+            className="block min-[1024px]:hidden"
+          />
         </div>
         <div className="hidden justify-evenly items-center min-[1024px]:flex">
           {productImage[0].thumbnail.map((thumbnail, index) => (
@@ -49,7 +54,7 @@ const ProductImagesContainer: React.FC<ProductImagesContainerProps> = ({
               onClick={() => setImageIndex(index)}
               className={`${
                 index === imageIndex ? "opacity-30" : "opacity-100"
-              }`}
+              } hover:opacity-30`}
             >
               <img
                 src={thumbnail}
@@ -60,7 +65,7 @@ const ProductImagesContainer: React.FC<ProductImagesContainerProps> = ({
           ))}
         </div>
       </div>
-      <div className="absolute flex w-full justify-between min-[1024px]:hidden">
+      <div className="absolute flex w-full justify-between min-[640px]:w-[600px] min-[1024px]:hidden">
         <button
           className="bg-white rounded-full w-8 h-8 mx-3 flex items-center justify-center"
           onClick={() => onClickBackward()}
@@ -74,9 +79,16 @@ const ProductImagesContainer: React.FC<ProductImagesContainerProps> = ({
           <img src={iconNext} alt="next icon" className="w-2 h-3" />
         </button>
       </div>
-      <div className="absolute">
-          <LightBox productImage={productImage} imageIndex={imageIndex} isShow={() => setIsLightBoxShow(!isLightBoxShow)} />
-      </div>
+      {isLightBoxShow && (
+        <>
+          <div className="hidden z-10 absolute w-screen top-0 right-0 bg-[#000] opacity-70 h-screen min-[1024px]:block"></div>
+          <LightBox
+            productImage={productImage}
+            imageIndex={imageIndex}
+            isShow={() => setIsLightBoxShow(!isLightBoxShow)}
+          />
+        </>
+      )}
     </div>
   );
 };

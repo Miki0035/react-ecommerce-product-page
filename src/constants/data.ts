@@ -28,9 +28,9 @@ export const product: ProductInfo = {
           import.meta.url
         ).href,
         new URL(
-            "../assets/images/image-product-4-thumbnail.jpg",
-            import.meta.url
-          ).href,
+          "../assets/images/image-product-4-thumbnail.jpg",
+          import.meta.url
+        ).href,
       ],
     },
   ],
@@ -39,3 +39,11 @@ export const product: ProductInfo = {
   amount: null,
   totalPrice: null,
 };
+
+export const navItems: string[] = [
+  "Collections",
+  "Men",
+  "Women",
+  "About",
+  "contact",
+];

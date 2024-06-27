@@ -13,20 +13,9 @@
 }
 
 .attribution {
-  font-size: 11px;
+  font-size: 1.1rem;
   text-align: center;
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
-}
-
-:root {
-  orange: hsl(26, 100%, 55%);
-  paleorange: hsl(25, 100%, 94%);
-
-  verydarkblue: hsl(220, 13%, 13%);
-  darkgrayishblue: hsl(219, 9%, 45%);
-  grayishblue: hsl(220, 14%, 75%);
-  lightgrayishblue: hsl(223, 64%, 98%);
-  white: hsl(0, 0%, 100%);
 }

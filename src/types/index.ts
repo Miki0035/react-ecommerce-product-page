@@ -35,10 +35,10 @@ export type ProductDescriptionProps = {
 };
 
 export type LightBoxProps = {
-    productImage: {
-      img: string[];
-      thumbnail: string[];
-    }[];
-    imageIndex: number;
-    isShow: () => void;
-  };
+  productImage: {
+    img: string[];
+    thumbnail: string[];
+  }[];
+  imageIndex: number;
+  isShow: () => void;
+};

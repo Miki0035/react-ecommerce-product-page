@@ -14,7 +14,7 @@ const CartCard = () => {
   };
 
   return (
-    <div className="absolute z-40 h-screen w-[310px] top-11 -right-14 min-[375px]:w-[355px] ">
+    <div className="absolute z-40 h-screen w-[310px] top-11 -right-14 min-[375px]:w-[355px]  min-[1024px]:shadow-2xl min-[1024px]:h-[230px] ">
       {cartItems.length > 0 ? (
         cartItems.map((cart, index) => {
           totalAmount = (cart.price * cart.discount) / 100;
@@ -32,7 +32,7 @@ const CartCard = () => {
                 <div className="flex items-center justify-between my-3">
                   <div className="flex">
                     <img
-                      src={cart.productImage[0].img}
+                      src={cart.productImage[0].img[0]}
                       alt="product image"
                       className="w-12 h-12 rounded-md mr-2"
                     />
