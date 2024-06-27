@@ -7,7 +7,7 @@ const App = () => {
       <main>
         <ProductSection />
       </main>
-      <div>
+      <footer>
         <div className="attribution">
           Challenge by{" "}
           <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
@@ -22,7 +22,7 @@ const App = () => {
           </a>
           .
         </div>
-      </div>
+      </footer>
     </StateContext>
   );
 };
